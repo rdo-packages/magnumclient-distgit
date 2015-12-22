@@ -14,8 +14,8 @@
 
 
 Name:           python-%{pname}
-Version:        1.1.0
-Release:        3%{?dist}
+Version:        XXX
+Release:        XXX
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -137,7 +137,7 @@ Python-magnumclient test subpackage
 %endif
 
 %prep
-%autosetup -n %{sname}-%{version}
+%autosetup -n %{sname}-%{upstream_version}
 
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
@@ -171,9 +171,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %check
 # tests are failing due to unicode not defined
 # we are skipping the test
-%{__python2} setup.py test ||
+%{__python2} setup.py test ||:
 %if 0%{?with_python3}
-%{__python3} setup.py test ||
+%{__python3} setup.py test ||:
 %endif
 
 %files -n python2-%{pname}
@@ -183,7 +183,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %if %{default_python} <= 2
 %{_bindir}/magnum
 %endif
-%{python2_sitelib}/*-%{version}-py?.?.egg-info
+%{python2_sitelib}/*.egg-info
 %exclude %{python2_sitelib}/%{pname}/tests
 
 %if 0%{?with_python3}
@@ -194,7 +194,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %{_bindir}/magnum
 %endif
 %{python3_sitelib}/magnumclient
-%{python3_sitelib}/*-%{version}-py?.?.egg-info
+%{python3_sitelib}/*.egg-info
 %exclude %{python3_sitelib}/%{pname}/tests
 %endif
 
@@ -211,11 +211,4 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
-* Mon Dec 21 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-3
-* Minor python2 and python3 macro fixes
 
-* Fri Dec 18 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-2
-- Added test subpackage
-
-* Mon Nov 30 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-1
-- Initial package
