@@ -155,7 +155,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 
-%if 0%{with_python3}
+%if 0%{?with_python3}
 %py3_install
 %if %{default_python} >= 3
 mv %{buildroot}%{_bindir}/magnum ./magnum.py3
@@ -164,7 +164,7 @@ mv %{buildroot}%{_bindir}/magnum ./magnum.py3
 
 %py2_install
 
-%if %{default_python} >= 3
+%if 0%{?default_python} >= 3
 mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
@@ -180,7 +180,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/%{pname}
-%if %{default_python} <= 2
+%if 0%{?default_python} <= 2
 %{_bindir}/magnum
 %endif
 %{python2_sitelib}/*.egg-info
@@ -190,7 +190,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %files -n python3-%{pname}
 %doc README.rst
 %license LICENSE
-%if %{default_python} >= 3
+%if 0%{?default_python} >= 3
 %{_bindir}/magnum
 %endif
 %{python3_sitelib}/magnumclient
