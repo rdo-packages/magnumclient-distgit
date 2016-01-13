@@ -1,17 +1,12 @@
 %global sname python-magnumclient
 %global pname magnumclient
 
-%if 0%{?fedora}
-%global with_python3 1
-
 %if 0%{?fedora} >= 24
+%global with_python3 1
 %global default_python 3
 %else
 %global default_python 2
 %endif
-
-%endif
-
 
 Name:           python-%{pname}
 Version:        XXX
@@ -171,9 +166,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %check
 # tests are failing due to unicode not defined
 # we are skipping the test
-%{__python2} setup.py test ||:
+%{__python2} setup.py test ||
 %if 0%{?with_python3}
-%{__python3} setup.py test ||:
+%{__python3} setup.py test ||
 %endif
 
 %files -n python2-%{pname}
@@ -211,4 +206,3 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
-
