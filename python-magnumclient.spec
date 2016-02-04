@@ -15,7 +15,7 @@
 
 Name:           python-%{pname}
 Version:        1.1.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -211,6 +211,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Mon Dec 21 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-3
 * Minor python2 and python3 macro fixes
 
