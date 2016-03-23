@@ -1,3 +1,4 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global sname python-magnumclient
 %global pname magnumclient
 
@@ -9,13 +10,13 @@
 %endif
 
 Name:           python-%{pname}
-Version:        XXX
-Release:        XXX
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
 URL:            https://launchpad.net/python-magnumclient
-Source0:        https://pypi.python.org/packages/source/p/%{sname}/%{sname}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/p/%{sname}/%{sname}-%{version}%{?milestone}.tar.gz
 BuildArch:      noarch
 
 %description
@@ -206,3 +207,5 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Wed Mar 23 2016 RDO <rdo-list@redhat.com> 2.0.0-0.1
+-  Rebuild for Mitaka 
