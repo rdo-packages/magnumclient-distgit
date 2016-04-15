@@ -1,26 +1,22 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global sname python-magnumclient
 %global pname magnumclient
 
-%if 0%{?fedora}
-%global with_python3 1
-
 %if 0%{?fedora} >= 24
+%global with_python3 1
 %global default_python 3
 %else
 %global default_python 2
 %endif
 
-%endif
-
-
 Name:           python-%{pname}
-Version:        1.1.0
-Release:        4%{?dist}
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
 URL:            https://launchpad.net/python-magnumclient
-Source0:        https://pypi.python.org/packages/source/p/%{sname}/%{sname}-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/source/p/%{sname}/%{sname}-%{version}%{?milestone}.tar.gz
 BuildArch:      noarch
 
 %description
@@ -137,7 +133,7 @@ Python-magnumclient test subpackage
 %endif
 
 %prep
-%autosetup -n %{sname}-%{version}
+%autosetup -n %{sname}-%{upstream_version}
 
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
@@ -155,7 +151,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 
-%if 0%{with_python3}
+%if 0%{?with_python3}
 %py3_install
 %if %{default_python} >= 3
 mv %{buildroot}%{_bindir}/magnum ./magnum.py3
@@ -164,37 +160,37 @@ mv %{buildroot}%{_bindir}/magnum ./magnum.py3
 
 %py2_install
 
-%if %{default_python} >= 3
+%if 0%{?default_python} >= 3
 mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %check
 # tests are failing due to unicode not defined
 # we are skipping the test
-%{__python2} setup.py test ||:
+%{__python2} setup.py test ||
 %if 0%{?with_python3}
-%{__python3} setup.py test ||:
+%{__python3} setup.py test ||
 %endif
 
 %files -n python2-%{pname}
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/%{pname}
-%if %{default_python} <= 2
+%if 0%{?default_python} <= 2
 %{_bindir}/magnum
 %endif
-%{python2_sitelib}/*-%{version}-py?.?.egg-info
+%{python2_sitelib}/*.egg-info
 %exclude %{python2_sitelib}/%{pname}/tests
 
 %if 0%{?with_python3}
 %files -n python3-%{pname}
 %doc README.rst
 %license LICENSE
-%if %{default_python} >= 3
+%if 0%{?default_python} >= 3
 %{_bindir}/magnum
 %endif
 %{python3_sitelib}/magnumclient
-%{python3_sitelib}/*-%{version}-py?.?.egg-info
+%{python3_sitelib}/*.egg-info
 %exclude %{python3_sitelib}/%{pname}/tests
 %endif
 
@@ -211,14 +207,5 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
-* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
-
-* Mon Dec 21 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-3
-* Minor python2 and python3 macro fixes
-
-* Fri Dec 18 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-2
-- Added test subpackage
-
-* Mon Nov 30 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-1
-- Initial package
+* Wed Mar 23 2016 RDO <rdo-list@redhat.com> 2.0.0-0.1
+-  Rebuild for Mitaka 

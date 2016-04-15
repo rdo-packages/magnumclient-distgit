@@ -1,0 +1,11 @@
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
+* Mon Dec 21 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-3
+* Minor python2 and python3 macro fixes
+
+* Fri Dec 18 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-2
+- Added test subpackage
+
+* Mon Nov 30 2015 Chandan Kumar <chkumar246@gmail.com> - 1.1.0-1
+- Initial package
