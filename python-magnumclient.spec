@@ -10,8 +10,8 @@
 %endif
 
 Name:           python-%{pname}
-Version:        XXX
-Release:        XXX
+Version:        2.3.0
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -207,3 +207,6 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Mon Sep 12 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.3.0-1
+- Update to 2.3.0
+
