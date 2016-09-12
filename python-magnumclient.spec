@@ -15,7 +15,7 @@ Summary:        Client library for Magnum API
 
 License:        ASL 2.0
 URL:            https://launchpad.net/python-magnumclient
-Source0:        https://pypi.python.org/packages/source/p/%{sname}/%{sname}-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/p/%{sname}/%{sname}-%{version}.tar.gz
 BuildArch:      noarch
 
 %description
