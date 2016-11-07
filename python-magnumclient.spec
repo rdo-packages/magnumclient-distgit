@@ -11,7 +11,7 @@
 
 Name:           python-%{pname}
 Version:        2.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -43,6 +43,9 @@ BuildRequires:  python-testtools
 BuildRequires:  python-keystoneauth1
 BuildRequires:  python-prettytable
 
+Requires:    python-babel
+Requires:    python-cryptography
+Requires:    python-decorator
 Requires:    python-babel
 Requires:    python-oslo-i18n
 Requires:    python-oslo-serialization
@@ -76,6 +79,8 @@ BuildRequires:  python3-keystoneauth1
 BuildRequires:  python3-prettytable
 
 Requires:    python3-babel
+Requires:    python3-cryptography
+Requires:    python3-decorator
 Requires:    python3-oslo-i18n
 Requires:    python3-oslo-serialization
 Requires:    python3-oslo-utils
@@ -207,6 +212,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Mon Nov 07 2016 rochaporto <rocha.porto@gmail.com> 2.3.1-2
+- Add missing decorator and cryptography python dependencies
+
 * Thu Oct 20 2016 Alfredo Moralejo <amoralej@redhat.com> 2.3.1-1
 - Update to 2.3.1
 
