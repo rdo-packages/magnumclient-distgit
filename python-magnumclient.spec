@@ -44,6 +44,8 @@ BuildRequires:  python-keystoneauth1
 BuildRequires:  python-prettytable
 
 Requires:    python-babel
+Requires:    python-cryptography
+Requires:    python-decorator
 Requires:    python-oslo-i18n
 Requires:    python-oslo-serialization
 Requires:    python-oslo-utils
@@ -76,6 +78,8 @@ BuildRequires:  python3-keystoneauth1
 BuildRequires:  python3-prettytable
 
 Requires:    python3-babel
+Requires:    python3-cryptography
+Requires:    python3-decorator
 Requires:    python3-oslo-i18n
 Requires:    python3-oslo-serialization
 Requires:    python3-oslo-utils
