@@ -217,3 +217,4 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-magnumclient/commit/?id=565528812bae9f515b30d6022a78ba920ac17bc9
