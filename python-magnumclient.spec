@@ -51,7 +51,6 @@ Requires:    python-oslo-i18n >= 2.1.0
 Requires:    python-oslo-serialization >= 1.10.0
 Requires:    python-oslo-utils >= 3.18.0
 Requires:    python-os-client-config >= 1.22.0
-Requires:    python-pbr
 Requires:    python-prettytable
 Requires:    python-six
 
@@ -88,7 +87,6 @@ Requires:    python3-oslo-i18n >= 2.1.0
 Requires:    python3-oslo-serialization >= 1.10.0
 Requires:    python3-oslo-utils >= 3.18.0
 Requires:    python3-os-client-config >= 1.22.0
-Requires:    python3-pbr
 Requires:    python3-prettytable
 Requires:    python3-six
 
