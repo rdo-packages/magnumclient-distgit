@@ -10,7 +10,7 @@
 %endif
 
 Name:           python-%{pname}
-Version:        2.4.0
+Version:        2.5.0
 Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
@@ -217,6 +217,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Tue Mar 28 2017 Jon Schlueter <jschluet@redhat.com> 2.5.0-1
+- Update to 2.5.0
+
 * Wed Feb 08 2017 Alfredo Moralejo <amoralej@redhat.com> 2.4.0-1
 - Update to 2.4.0
 
