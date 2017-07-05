@@ -22,6 +22,30 @@
       "revId": "3f3cb8cc57ba7706a3cbdea8344943cb8b878aa8",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa7fdbe_4f5fee0e",
+        "filename": "python-magnumclient.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2017-07-05T15:37:45Z",
+      "side": 1,
+      "message": "https://review.rdoproject.org/jenkins/job/DLRN-rpmbuild/12832/console import errors. currently python-decorator is not available in cbs so uncommenting it.",
+      "parentUuid": "9aa7fdbe_6f74b29c",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 34
+      },
+      "revId": "3f3cb8cc57ba7706a3cbdea8344943cb8b878aa8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
