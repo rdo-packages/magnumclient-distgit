@@ -31,6 +31,7 @@ Summary:        Client library for Magnum API
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-pbr
+BuildRequires:  git
 
 # test dependencies
 BuildRequires:  python-oslo-utils
@@ -101,7 +102,9 @@ command-line tool (magnum).
 %package -n python-%{pname}-doc
 Summary:        python-magnumclient documentation
 BuildRequires:   python-sphinx
-BuildRequires:   python-oslo-sphinx
+BuildRequires:   python-openstackdocstheme
+BuildRequires:   python-os-client-config
+#BuildRequires:   python-decorator
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
@@ -143,7 +146,7 @@ Python-magnumclient test subpackage
 %endif
 
 %prep
-%autosetup -n %{sname}-%{upstream_version}
+%autosetup -n %{name}-%{upstream_version} -S git
 
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
@@ -155,9 +158,9 @@ rm -rf {test-,}requirements.txt
 %py3_build
 %endif
 # generate html docs
-sphinx-build doc/source html
-# remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
+%{__python2} setup.py build_sphinx -b html
+# Fix hidden-file-or-dir warnings
+rm -fr doc/build/html/.doctrees html/.buildinfo
 
 %install
 
@@ -206,7 +209,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 
 %files -n python-%{pname}-doc
 %license LICENSE
-%doc html
+%doc doc/build/html
 
 %files -n python-%{pname}-tests
 %{python2_sitelib}/%{pname}/tests
