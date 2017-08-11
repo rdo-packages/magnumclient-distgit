@@ -10,8 +10,8 @@
 %endif
 
 Name:           python-%{pname}
-Version:        XXX
-Release:        XXX
+Version:        2.7.0
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -222,3 +222,6 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Fri Aug 11 2017 Alfredo Moralejo <amoralej@redhat.com> 2.7.0-1
+- Update to 2.7.0
+
