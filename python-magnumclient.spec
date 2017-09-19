@@ -107,6 +107,7 @@ Summary:        python-magnumclient documentation
 BuildRequires:   python-sphinx
 BuildRequires:   python-openstackdocstheme
 BuildRequires:   python-os-client-config
+BuildRequires:   openstack-macros
 #BuildRequires:   python-decorator
 
 %description -n python-%{pname}-doc
@@ -152,7 +153,7 @@ Requires:  python3-prettytable
 %autosetup -n %{name}-%{upstream_version} -S git
 
 # let RPM handle deps
-rm -rf {test-,}requirements.txt
+%py_req_cleanup
 
 %build
 %py2_build
