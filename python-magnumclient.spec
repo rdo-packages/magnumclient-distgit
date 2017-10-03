@@ -9,6 +9,13 @@
 %global default_python 2
 %endif
 
+%global common_desc \
+This is a client library for Magnum built on the Magnum API. \
+It provides a Python API (the magnumclient module) and a \
+command-line tool (magnum).
+
+%global common_desc_tests Python-magnumclient test subpackage
+
 Name:           python-%{pname}
 Version:        XXX
 Release:        XXX
@@ -20,9 +27,7 @@ Source0:        https://tarballs.openstack.org/%{sname}/%{sname}-%{upstream_vers
 BuildArch:      noarch
 
 %description
-This is a client library for Magnum built on the Magnum API.
-It provides a Python API (the magnumclient module) and a
-command-line tool (magnum).
+%{common_desc}
 
 %package -n     python2-%{pname}
 Summary:        Client library for Magnum API
@@ -58,9 +63,7 @@ Requires:    python-prettytable
 Requires:    python-six
 
 %description -n python2-%{pname}
-This is a client library for Magnum built on the Magnum API.
-It provides a Python API (the magnumclient module) and a
-command-line tool (magnum).
+%{common_desc}
 
 %if 0%{?with_python3}
 %package -n     python3-%{pname}
@@ -96,9 +99,7 @@ Requires:    python3-prettytable
 Requires:    python3-six
 
 %description -n python3-%{pname}
-This is a client library for Magnum built on the Magnum API.
-It provides a Python API (the magnumclient module) and a
-command-line tool (magnum).
+%{common_desc}
 %endif
 
 %package -n python-%{pname}-doc
@@ -126,7 +127,7 @@ Requires:  python-keystoneauth1
 Requires:  python-prettytable
 
 %description -n python-%{pname}-tests
-Python-magnumclient test subpackage
+%{common_desc_tests}
 
 %if 0%{?with_python3}
 %package -n python3-%{pname}-tests
@@ -144,7 +145,7 @@ Requires:  python3-keystoneauth1
 Requires:  python3-prettytable
 
 %description -n python3-%{pname}-tests
-Python-magnumclient test subpackage
+%{common_desc_tests}
 %endif
 
 %prep
