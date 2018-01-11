@@ -37,6 +37,7 @@ BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-pbr
 BuildRequires:  git
+BuildRequires:  openstack-macros
 
 # test dependencies
 BuildRequires:  python-oslo-utils
@@ -107,7 +108,6 @@ Summary:        python-magnumclient documentation
 BuildRequires:   python-sphinx
 BuildRequires:   python-openstackdocstheme
 BuildRequires:   python-os-client-config
-BuildRequires:   openstack-macros
 #BuildRequires:   python-decorator
 
 %description -n python-%{pname}-doc
