@@ -34,33 +34,41 @@ Summary:        Client library for Magnum API
 %{?python_provide:%python_provide python2-%{pname}}
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
-BuildRequires:  python-pbr
+BuildRequires:  python2-setuptools
+BuildRequires:  python2-pbr
 BuildRequires:  git
 
 # test dependencies
-BuildRequires:  python-oslo-utils
-BuildRequires:  python-stevedore
-BuildRequires:  python-requests
-BuildRequires:  python-oslo-i18n
-BuildRequires:  python-fixtures
-BuildRequires:  python-mock
-BuildRequires:  python-testtools
-BuildRequires:  python-keystoneauth1
-BuildRequires:  python-prettytable
+BuildRequires:  python2-oslo-utils
+BuildRequires:  python2-openstackclient
+BuildRequires:  python2-oslo-serialization
+BuildRequires:  python2-oslo-log
+BuildRequires:  python2-stevedore
+BuildRequires:  python2-requests
+BuildRequires:  python2-oslo-i18n
+BuildRequires:  python2-fixtures
+BuildRequires:  python2-mock
+BuildRequires:  python2-testtools
+BuildRequires:  python2-keystoneauth1
+BuildRequires:  python2-prettytable
 
-Requires:    python-babel
-Requires:    python-cryptography
+Requires:    python2-babel
+Requires:    python2-cryptography
+Requires:    python2-keystoneauth1 >= 3.3.0
+Requires:    python2-oslo-i18n >= 3.15.3
+Requires:    python2-oslo-log >= 3.36.0
+Requires:    python2-oslo-serialization >= 2.18.0
+Requires:    python2-oslo-utils >= 3.33.0
+Requires:    python2-osc-lib >= 1.8.0
+Requires:    python2-os-client-config >= 1.28.0
+Requires:    python2-pbr
+Requires:    python2-prettytable
+Requires:    python2-six
+%if 0%{?fedora} > 0
+Requires:    python2-decorator
+%else
 Requires:    python-decorator
-Requires:    python-keystoneauth1 >= 3.1.0
-Requires:    python-oslo-i18n >= 2.1.0
-Requires:    python-oslo-serialization >= 1.10.0
-Requires:    python-oslo-utils >= 3.20.0
-Requires:    python-osc-lib >= 1.7.0
-Requires:    python-os-client-config >= 1.28.0
-Requires:    python-pbr
-Requires:    python-prettytable
-Requires:    python-six
+%endif
 
 %description -n python2-%{pname}
 %{common_desc}
@@ -76,6 +84,9 @@ BuildRequires:  python3-pbr
 
 # test dependencies
 BuildRequires:  python3-oslo-utils
+BuildRequires:  python3-openstackclient
+BuildRequires:  python3-oslo-serialization
+BuildRequires:  python3-oslo-log
 BuildRequires:  python3-stevedore
 BuildRequires:  python3-requests
 BuildRequires:  python3-oslo-i18n
@@ -88,11 +99,12 @@ BuildRequires:  python3-prettytable
 Requires:    python3-babel
 Requires:    python3-cryptography
 Requires:    python3-decorator
-Requires:    python3-keystoneauth1 >= 3.1.0
-Requires:    python3-oslo-i18n >= 2.1.0
-Requires:    python3-oslo-serialization >= 1.10.0
-Requires:    python3-oslo-utils >= 3.20.0
-Requires:    python3-osc-lib >= 1.7.0
+Requires:    python3-keystoneauth1 >= 3.3.0
+Requires:    python3-oslo-i18n >= 3.15.3
+Requires:    python3-oslo-log >= 3.36.0
+Requires:    python3-oslo-serialization >= 2.18.0
+Requires:    python3-oslo-utils >= 3.33.0
+Requires:    python3-osc-lib >= 1.8.0
 Requires:    python3-os-client-config >= 1.28.0
 Requires:    python3-pbr
 Requires:    python3-prettytable
@@ -104,30 +116,35 @@ Requires:    python3-six
 
 %package -n python-%{pname}-doc
 Summary:        python-magnumclient documentation
-BuildRequires:   python-sphinx
-BuildRequires:   python-openstackdocstheme
-BuildRequires:   python-os-client-config
+BuildRequires:   python2-sphinx
+BuildRequires:   python2-openstackdocstheme
+BuildRequires:   python2-os-client-config
 BuildRequires:   openstack-macros
-#BuildRequires:   python-decorator
+%if 0%{?fedora} > 0
+BuildRequires:   python2-decorator
+%else
+BuildRequires:   python-decorator
+%endif
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
 
-%package -n python-%{pname}-tests
+%package -n python2-%{pname}-tests
 Summary: Python-magnumclient test subpackage
+%{?python_provide:%python_provide python2-%{pname}-tests}
 
-Requires:  python-%{pname} = %{version}-%{release}
-Requires:  python-oslo-utils
-Requires:  python-stevedore
-Requires:  python-requests
-Requires:  python-oslo-i18n
-Requires:  python-fixtures
-Requires:  python-mock
-Requires:  python-testtools
-Requires:  python-keystoneauth1
-Requires:  python-prettytable
+Requires:  python2-%{pname} = %{version}-%{release}
+Requires:  python2-oslo-utils
+Requires:  python2-stevedore
+Requires:  python2-requests
+Requires:  python2-oslo-i18n
+Requires:  python2-fixtures
+Requires:  python2-mock
+Requires:  python2-testtools
+Requires:  python2-keystoneauth1
+Requires:  python2-prettytable
 
-%description -n python-%{pname}-tests
+%description -n python2-%{pname}-tests
 %{common_desc_tests}
 
 %if 0%{?with_python3}
@@ -215,7 +232,7 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %license LICENSE
 %doc doc/build/html
 
-%files -n python-%{pname}-tests
+%files -n python2-%{pname}-tests
 %{python2_sitelib}/%{pname}/tests
 
 %if 0%{?with_python3}
