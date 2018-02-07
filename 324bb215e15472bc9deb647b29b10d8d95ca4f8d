@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_7c901096",
+        "filename": "python-magnumclient.spec",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2018-02-07T08:25:46Z",
+      "side": 1,
+      "message": "No",
+      "revId": "324bb215e15472bc9deb647b29b10d8d95ca4f8d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
