@@ -1,0 +1,9 @@
+Code-Review+2: Spyros Trigazis <strigazi@gmail.com>
+Code-Review+2: hguemar <hguemar@fedoraproject.org>
+Workflow+1: hguemar <hguemar@fedoraproject.org>
+Verified+2: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-by: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-at: Mon, 05 Mar 2018 15:34:39 +0000
+Reviewed-on: https://review.rdoproject.org/r/12754
+Project: openstack/magnumclient-distgit
+Branch: refs/heads/queens-rdo
