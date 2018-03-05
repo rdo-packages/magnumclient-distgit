@@ -17,7 +17,7 @@ command-line tool (magnum).
 %global common_desc_tests Python-magnumclient test subpackage
 
 Name:           python-%{pname}
-Version:        2.8.0
+Version:        2.9.0
 Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
@@ -243,6 +243,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Mon Mar 05 2018 RDO <dev@lists.rdoproject.org> 2.9.0-1
+- Update to 2.9.0
+
 * Sun Feb 11 2018 RDO <dev@lists.rdoproject.org> 2.8.0-1
 - Update to 2.8.0
 
