@@ -181,7 +181,9 @@ Requires:  python3-prettytable
 %py3_build
 %endif
 # generate html docs
-sphinx-build -W -b html doc/source doc/build/html
+# (TODO) Re-add -W once https://review.openstack.org/#/c/554197 is in a
+# tagged release
+sphinx-build -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.{doctrees,buildinfo}
 
