@@ -55,7 +55,7 @@ BuildRequires:  python2-prettytable
 
 Requires:    python2-babel
 Requires:    python2-cryptography
-Requires:    python2-keystoneauth1 >= 3.3.0
+Requires:    python2-keystoneauth1 >= 3.4.0
 Requires:    python2-oslo-i18n >= 3.15.3
 Requires:    python2-oslo-log >= 3.36.0
 Requires:    python2-oslo-serialization >= 2.18.0
@@ -101,7 +101,7 @@ BuildRequires:  python3-prettytable
 Requires:    python3-babel
 Requires:    python3-cryptography
 Requires:    python3-decorator
-Requires:    python3-keystoneauth1 >= 3.3.0
+Requires:    python3-keystoneauth1 >= 3.4.0
 Requires:    python3-oslo-i18n >= 3.15.3
 Requires:    python3-oslo-log >= 3.36.0
 Requires:    python3-oslo-serialization >= 2.18.0
