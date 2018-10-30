@@ -1,13 +1,17 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global sname python-magnumclient
 %global pname magnumclient
-
-%if 0%{?fedora} >= 24
-%global with_python3 1
-%global default_python 3
-%else
-%global default_python 2
-%endif
 
 %global common_desc \
 This is a client library for Magnum built on the Magnum API. \
@@ -29,144 +33,87 @@ BuildArch:      noarch
 %description
 %{common_desc}
 
-%package -n     python2-%{pname}
+%package -n     python%{pyver}-%{pname}
 Summary:        Client library for Magnum API
-%{?python_provide:%python_provide python2-%{pname}}
+%{?python_provide:%python_provide python%{pyver}-%{pname}}
 
-BuildRequires:  python2-devel
-BuildRequires:  python2-setuptools
-BuildRequires:  python2-pbr
+BuildRequires:  python%{pyver}-devel
+BuildRequires:  python%{pyver}-setuptools
+BuildRequires:  python%{pyver}-pbr
 BuildRequires:  git
+BuildRequires:  openstack-macros
 
 # test dependencies
-BuildRequires:  python2-oslo-utils
-BuildRequires:  python2-openstackclient
-BuildRequires:  python2-oslo-serialization
-BuildRequires:  python2-oslo-log
-BuildRequires:  python2-osprofiler
-BuildRequires:  python2-stevedore
-BuildRequires:  python2-requests
-BuildRequires:  python2-oslo-i18n
-BuildRequires:  python2-fixtures
-BuildRequires:  python2-mock
-BuildRequires:  python2-testtools
-BuildRequires:  python2-keystoneauth1
-BuildRequires:  python2-prettytable
+BuildRequires:  python%{pyver}-oslo-utils
+BuildRequires:  python%{pyver}-openstackclient
+BuildRequires:  python%{pyver}-oslo-serialization
+BuildRequires:  python%{pyver}-oslo-log
+BuildRequires:  python%{pyver}-osprofiler
+BuildRequires:  python%{pyver}-stevedore
+BuildRequires:  python%{pyver}-requests
+BuildRequires:  python%{pyver}-oslo-i18n
+BuildRequires:  python%{pyver}-fixtures
+BuildRequires:  python%{pyver}-mock
+BuildRequires:  python%{pyver}-testtools
+BuildRequires:  python%{pyver}-keystoneauth1
+BuildRequires:  python%{pyver}-prettytable
 
-Requires:    python2-babel
-Requires:    python2-cryptography
-Requires:    python2-keystoneauth1 >= 3.4.0
-Requires:    python2-oslo-i18n >= 3.15.3
-Requires:    python2-oslo-log >= 3.36.0
-Requires:    python2-oslo-serialization >= 2.18.0
-Requires:    python2-oslo-utils >= 3.33.0
-Requires:    python2-osc-lib >= 1.8.0
-Requires:    python2-os-client-config >= 1.28.0
-Requires:    python2-pbr
-Requires:    python2-prettytable
-Requires:    python2-six
-%if 0%{?fedora} > 0
-Requires:    python2-decorator
-%else
+Requires:    python%{pyver}-babel
+Requires:    python%{pyver}-cryptography
+Requires:    python%{pyver}-keystoneauth1 >= 3.4.0
+Requires:    python%{pyver}-oslo-i18n >= 3.15.3
+Requires:    python%{pyver}-oslo-log >= 3.36.0
+Requires:    python%{pyver}-oslo-serialization >= 2.18.0
+Requires:    python%{pyver}-oslo-utils >= 3.33.0
+Requires:    python%{pyver}-osc-lib >= 1.8.0
+Requires:    python%{pyver}-os-client-config >= 1.28.0
+Requires:    python%{pyver}-pbr
+Requires:    python%{pyver}-prettytable
+Requires:    python%{pyver}-six
+
+# Handle python2 exception
+%if %{pyver} == 2
 Requires:    python-decorator
+%else
+Requires:    python%{pyver}-decorator
 %endif
 
-%description -n python2-%{pname}
+%description -n python%{pyver}-%{pname}
 %{common_desc}
-
-%if 0%{?with_python3}
-%package -n     python3-%{pname}
-Summary:        Client library for Magnum API
-%{?python_provide:%python_provide python3-%{pname}}
-
-BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-pbr
-
-# test dependencies
-BuildRequires:  python3-oslo-utils
-BuildRequires:  python3-openstackclient
-BuildRequires:  python3-oslo-serialization
-BuildRequires:  python3-oslo-log
-BuildRequires:  python3-osprofiler
-BuildRequires:  python3-stevedore
-BuildRequires:  python3-requests
-BuildRequires:  python3-oslo-i18n
-BuildRequires:  python3-fixtures
-BuildRequires:  python3-mock
-BuildRequires:  python3-testtools
-BuildRequires:  python3-keystoneauth1
-BuildRequires:  python3-prettytable
-
-Requires:    python3-babel
-Requires:    python3-cryptography
-Requires:    python3-decorator
-Requires:    python3-keystoneauth1 >= 3.4.0
-Requires:    python3-oslo-i18n >= 3.15.3
-Requires:    python3-oslo-log >= 3.36.0
-Requires:    python3-oslo-serialization >= 2.18.0
-Requires:    python3-oslo-utils >= 3.33.0
-Requires:    python3-osc-lib >= 1.8.0
-Requires:    python3-os-client-config >= 1.28.0
-Requires:    python3-pbr
-Requires:    python3-prettytable
-Requires:    python3-six
-
-%description -n python3-%{pname}
-%{common_desc}
-%endif
 
 %package -n python-%{pname}-doc
 Summary:        python-magnumclient documentation
-BuildRequires:   python2-sphinx
-BuildRequires:   python2-openstackdocstheme
-BuildRequires:   python2-os-client-config
-BuildRequires:   openstack-macros
-%if 0%{?fedora} > 0
-BuildRequires:   python2-decorator
-%else
+BuildRequires:   python%{pyver}-sphinx
+BuildRequires:   python%{pyver}-openstackdocstheme
+BuildRequires:   python%{pyver}-os-client-config
+
+# Handle python2 exception
+%if %{pyver} == 2
 BuildRequires:   python-decorator
+%else
+BuildRequires:   python%{pyver}-decorator
 %endif
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
 
-%package -n python2-%{pname}-tests
+%package -n python%{pyver}-%{pname}-tests
 Summary: Python-magnumclient test subpackage
 %{?python_provide:%python_provide python2-%{pname}-tests}
 
-Requires:  python2-%{pname} = %{version}-%{release}
-Requires:  python2-oslo-utils
-Requires:  python2-stevedore
-Requires:  python2-requests
-Requires:  python2-oslo-i18n
-Requires:  python2-fixtures
-Requires:  python2-mock
-Requires:  python2-testtools
-Requires:  python2-keystoneauth1
-Requires:  python2-prettytable
+Requires:  python%{pyver}-%{pname} = %{version}-%{release}
+Requires:  python%{pyver}-oslo-utils
+Requires:  python%{pyver}-stevedore
+Requires:  python%{pyver}-requests
+Requires:  python%{pyver}-oslo-i18n
+Requires:  python%{pyver}-fixtures
+Requires:  python%{pyver}-mock
+Requires:  python%{pyver}-testtools
+Requires:  python%{pyver}-keystoneauth1
+Requires:  python%{pyver}-prettytable
 
-%description -n python2-%{pname}-tests
+%description -n python%{pyver}-%{pname}-tests
 %{common_desc_tests}
-
-%if 0%{?with_python3}
-%package -n python3-%{pname}-tests
-Summary: Python-magnumclient test subpackage
-
-Requires:  python3-%{pname} = %{version}-%{release}
-Requires:  python3-oslo-utils
-Requires:  python3-stevedore
-Requires:  python3-requests
-Requires:  python3-oslo-i18n
-Requires:  python3-fixtures
-Requires:  python3-mock
-Requires:  python3-testtools
-Requires:  python3-keystoneauth1
-Requires:  python3-prettytable
-
-%description -n python3-%{pname}-tests
-%{common_desc_tests}
-%endif
 
 %prep
 %autosetup -n %{name}-%{upstream_version} -S git
@@ -175,73 +122,36 @@ Requires:  python3-prettytable
 %py_req_cleanup
 
 %build
-%py2_build
+%{pyver_build}
 
-%if 0%{?with_python3}
-%py3_build
-%endif
 # generate html docs
 # (TODO) Re-add -W once https://review.openstack.org/#/c/554197 is in a
 # tagged release
-sphinx-build -b html doc/source doc/build/html
+sphinx-build-%{pyver} -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
-
-%if 0%{?with_python3}
-%py3_install
-%if %{default_python} >= 3
-mv %{buildroot}%{_bindir}/magnum ./magnum.py3
-%endif
-%endif
-
-%py2_install
-
-%if 0%{?default_python} >= 3
-mv magnum.py3 %{buildroot}%{_bindir}/magnum
-%endif
+%{pyver_install}
 
 %check
 # tests are failing due to unicode not defined
 # we are skipping the test
-%{__python2} setup.py test ||
-%if 0%{?with_python3}
-%{__python3} setup.py test ||
-%endif
+%{pyver_bin} setup.py test ||
 
-%files -n python2-%{pname}
+%files -n python%{pyver}-%{pname}
 %doc README.rst
 %license LICENSE
-%{python2_sitelib}/%{pname}
-%if 0%{?default_python} <= 2
+%{pyver_sitelib}/%{pname}
 %{_bindir}/magnum
-%endif
-%{python2_sitelib}/*.egg-info
-%exclude %{python2_sitelib}/%{pname}/tests
-
-%if 0%{?with_python3}
-%files -n python3-%{pname}
-%doc README.rst
-%license LICENSE
-%if 0%{?default_python} >= 3
-%{_bindir}/magnum
-%endif
-%{python3_sitelib}/magnumclient
-%{python3_sitelib}/*.egg-info
-%exclude %{python3_sitelib}/%{pname}/tests
-%endif
+%{pyver_sitelib}/*.egg-info
+%exclude %{pyver_sitelib}/%{pname}/tests
 
 %files -n python-%{pname}-doc
 %license LICENSE
 %doc doc/build/html
 
-%files -n python2-%{pname}-tests
-%{python2_sitelib}/%{pname}/tests
-
-%if 0%{?with_python3}
-%files -n python3-%{pname}-tests
-%{python3_sitelib}/%{pname}/tests
-%endif
+%files -n python%{pyver}-%{pname}-tests
+%{pyver_sitelib}/%{pname}/tests
 
 %changelog
