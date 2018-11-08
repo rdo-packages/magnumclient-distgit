@@ -36,6 +36,9 @@ BuildArch:      noarch
 %package -n     python%{pyver}-%{pname}
 Summary:        Client library for Magnum API
 %{?python_provide:%python_provide python%{pyver}-%{pname}}
+%if %{pyver} == 3
+Obsoletes: python2-%{pname} < %{version}-%{release}
+%endif
 
 BuildRequires:  python%{pyver}-devel
 BuildRequires:  python%{pyver}-setuptools
