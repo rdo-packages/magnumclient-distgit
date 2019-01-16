@@ -12,6 +12,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global sname python-magnumclient
 %global pname magnumclient
+%global with_doc 1
 
 %global common_desc \
 This is a client library for Magnum built on the Magnum API. \
@@ -84,6 +85,7 @@ Requires:    python%{pyver}-decorator
 %description -n python%{pyver}-%{pname}
 %{common_desc}
 
+%if 0%{?with_doc}
 %package -n python-%{pname}-doc
 Summary:        python-magnumclient documentation
 BuildRequires:   python%{pyver}-sphinx
@@ -99,6 +101,7 @@ BuildRequires:   python%{pyver}-decorator
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
+%endif
 
 %package -n python%{pyver}-%{pname}-tests
 Summary: Python-magnumclient test subpackage
@@ -127,12 +130,14 @@ Requires:  python%{pyver}-prettytable
 %build
 %{pyver_build}
 
+%if 0%{?with_doc}
 # generate html docs
 # (TODO) Re-add -W once https://review.openstack.org/#/c/554197 is in a
 # tagged release
 sphinx-build-%{pyver} -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.{doctrees,buildinfo}
+%endif
 
 %install
 %{pyver_install}
@@ -150,9 +155,11 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %{pyver_sitelib}/*.egg-info
 %exclude %{pyver_sitelib}/%{pname}/tests
 
+%if 0%{?with_doc}
 %files -n python-%{pname}-doc
 %license LICENSE
 %doc doc/build/html
+%endif
 
 %files -n python%{pyver}-%{pname}-tests
 %{pyver_sitelib}/%{pname}/tests
