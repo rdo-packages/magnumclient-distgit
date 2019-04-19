@@ -10,7 +10,7 @@
 %endif
 
 Name:           python-%{pname}
-Version:        2.7.0
+Version:        2.7.1
 Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
@@ -222,6 +222,9 @@ mv magnum.py3 %{buildroot}%{_bindir}/magnum
 %endif
 
 %changelog
+* Fri Apr 19 2019 RDO <dev@lists.rdoproject.org> 2.7.1-1
+- Update to 2.7.1
+
 * Fri Aug 11 2017 Alfredo Moralejo <amoralej@redhat.com> 2.7.0-1
 - Update to 2.7.0
 
