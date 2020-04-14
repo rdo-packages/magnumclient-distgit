@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global sname python-magnumclient
 %global pname magnumclient
@@ -34,91 +23,79 @@ BuildArch:      noarch
 %description
 %{common_desc}
 
-%package -n     python%{pyver}-%{pname}
+%package -n     python3-%{pname}
 Summary:        Client library for Magnum API
-%{?python_provide:%python_provide python%{pyver}-%{pname}}
-%if %{pyver} == 3
+%{?python_provide:%python_provide python3-%{pname}}
 Obsoletes: python2-%{pname} < %{version}-%{release}
-%endif
 
-BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-setuptools
-BuildRequires:  python%{pyver}-pbr
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pbr
 BuildRequires:  git
 BuildRequires:  openstack-macros
 
 # test dependencies
-BuildRequires:  python%{pyver}-oslo-utils
-BuildRequires:  python%{pyver}-openstackclient
-BuildRequires:  python%{pyver}-oslo-serialization
-BuildRequires:  python%{pyver}-oslo-log
-BuildRequires:  python%{pyver}-osprofiler
-BuildRequires:  python%{pyver}-stevedore
-BuildRequires:  python%{pyver}-requests
-BuildRequires:  python%{pyver}-oslo-i18n
-BuildRequires:  python%{pyver}-fixtures
-BuildRequires:  python%{pyver}-mock
-BuildRequires:  python%{pyver}-testtools
-BuildRequires:  python%{pyver}-keystoneauth1
-BuildRequires:  python%{pyver}-prettytable
+BuildRequires:  python3-oslo-utils
+BuildRequires:  python3-openstackclient
+BuildRequires:  python3-oslo-serialization
+BuildRequires:  python3-oslo-log
+BuildRequires:  python3-osprofiler
+BuildRequires:  python3-stevedore
+BuildRequires:  python3-requests
+BuildRequires:  python3-oslo-i18n
+BuildRequires:  python3-fixtures
+BuildRequires:  python3-mock
+BuildRequires:  python3-testtools
+BuildRequires:  python3-keystoneauth1
+BuildRequires:  python3-prettytable
 
-Requires:    python%{pyver}-babel
-Requires:    python%{pyver}-cryptography
-Requires:    python%{pyver}-keystoneauth1 >= 3.4.0
-Requires:    python%{pyver}-oslo-i18n >= 3.15.3
-Requires:    python%{pyver}-oslo-log >= 3.36.0
-Requires:    python%{pyver}-oslo-serialization >= 2.18.0
-Requires:    python%{pyver}-oslo-utils >= 3.33.0
-Requires:    python%{pyver}-osc-lib >= 1.8.0
-Requires:    python%{pyver}-os-client-config >= 1.28.0
-Requires:    python%{pyver}-pbr
-Requires:    python%{pyver}-prettytable
-Requires:    python%{pyver}-six
+Requires:    python3-babel
+Requires:    python3-cryptography
+Requires:    python3-keystoneauth1 >= 3.4.0
+Requires:    python3-oslo-i18n >= 3.15.3
+Requires:    python3-oslo-log >= 3.36.0
+Requires:    python3-oslo-serialization >= 2.18.0
+Requires:    python3-oslo-utils >= 3.33.0
+Requires:    python3-osc-lib >= 1.8.0
+Requires:    python3-os-client-config >= 1.28.0
+Requires:    python3-pbr
+Requires:    python3-prettytable
+Requires:    python3-six
 
-# Handle python2 exception
-%if %{pyver} == 2
-Requires:    python-decorator
-%else
-Requires:    python%{pyver}-decorator
-%endif
+Requires:    python3-decorator
 
-%description -n python%{pyver}-%{pname}
+%description -n python3-%{pname}
 %{common_desc}
 
 %if 0%{?with_doc}
 %package -n python-%{pname}-doc
 Summary:        python-magnumclient documentation
-BuildRequires:   python%{pyver}-sphinx
-BuildRequires:   python%{pyver}-openstackdocstheme
-BuildRequires:   python%{pyver}-os-client-config
+BuildRequires:   python3-sphinx
+BuildRequires:   python3-openstackdocstheme
+BuildRequires:   python3-os-client-config
 
-# Handle python2 exception
-%if %{pyver} == 2
-BuildRequires:   python-decorator
-%else
-BuildRequires:   python%{pyver}-decorator
-%endif
+BuildRequires:   python3-decorator
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
 %endif
 
-%package -n python%{pyver}-%{pname}-tests
+%package -n python3-%{pname}-tests
 Summary: Python-magnumclient test subpackage
 %{?python_provide:%python_provide python2-%{pname}-tests}
 
-Requires:  python%{pyver}-%{pname} = %{version}-%{release}
-Requires:  python%{pyver}-oslo-utils
-Requires:  python%{pyver}-stevedore
-Requires:  python%{pyver}-requests
-Requires:  python%{pyver}-oslo-i18n
-Requires:  python%{pyver}-fixtures
-Requires:  python%{pyver}-mock
-Requires:  python%{pyver}-testtools
-Requires:  python%{pyver}-keystoneauth1
-Requires:  python%{pyver}-prettytable
+Requires:  python3-%{pname} = %{version}-%{release}
+Requires:  python3-oslo-utils
+Requires:  python3-stevedore
+Requires:  python3-requests
+Requires:  python3-oslo-i18n
+Requires:  python3-fixtures
+Requires:  python3-mock
+Requires:  python3-testtools
+Requires:  python3-keystoneauth1
+Requires:  python3-prettytable
 
-%description -n python%{pyver}-%{pname}-tests
+%description -n python3-%{pname}-tests
 %{common_desc_tests}
 
 %prep
@@ -128,32 +105,32 @@ Requires:  python%{pyver}-prettytable
 %py_req_cleanup
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %if 0%{?with_doc}
 # generate html docs
 # (TODO) Re-add -W once https://review.openstack.org/#/c/554197 is in a
 # tagged release
-sphinx-build-%{pyver} -b html doc/source doc/build/html
+sphinx-build-3 -b html doc/source doc/build/html
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{pyver_install}
+%{py3_install}
 
 %check
 # tests are failing due to unicode not defined
 # we are skipping the test
-%{pyver_bin} setup.py test ||
+%{__python3} setup.py test ||
 
-%files -n python%{pyver}-%{pname}
+%files -n python3-%{pname}
 %doc README.rst
 %license LICENSE
-%{pyver_sitelib}/%{pname}
+%{python3_sitelib}/%{pname}
 %{_bindir}/magnum
-%{pyver_sitelib}/*.egg-info
-%exclude %{pyver_sitelib}/%{pname}/tests
+%{python3_sitelib}/*.egg-info
+%exclude %{python3_sitelib}/%{pname}/tests
 
 %if 0%{?with_doc}
 %files -n python-%{pname}-doc
@@ -161,7 +138,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %doc doc/build/html
 %endif
 
-%files -n python%{pyver}-%{pname}-tests
-%{pyver_sitelib}/%{pname}/tests
+%files -n python3-%{pname}-tests
+%{python3_sitelib}/%{pname}/tests
 
 %changelog
