@@ -37,9 +37,7 @@ BuildArch:      noarch
 %package -n     python%{pyver}-%{pname}
 Summary:        Client library for Magnum API
 %{?python_provide:%python_provide python%{pyver}-%{pname}}
-%if %{pyver} == 3
 Obsoletes: python2-%{pname} < %{version}-%{release}
-%endif
 
 BuildRequires:  python%{pyver}-devel
 BuildRequires:  python%{pyver}-setuptools
@@ -75,12 +73,7 @@ Requires:    python%{pyver}-pbr
 Requires:    python%{pyver}-prettytable
 Requires:    python%{pyver}-six
 
-# Handle python2 exception
-%if %{pyver} == 2
-Requires:    python-decorator
-%else
 Requires:    python%{pyver}-decorator
-%endif
 
 %description -n python%{pyver}-%{pname}
 %{common_desc}
@@ -92,12 +85,7 @@ BuildRequires:   python%{pyver}-sphinx
 BuildRequires:   python%{pyver}-openstackdocstheme
 BuildRequires:   python%{pyver}-os-client-config
 
-# Handle python2 exception
-%if %{pyver} == 2
-BuildRequires:   python-decorator
-%else
 BuildRequires:   python%{pyver}-decorator
-%endif
 
 %description -n python-%{pname}-doc
 Documentation for python-magnumclient
