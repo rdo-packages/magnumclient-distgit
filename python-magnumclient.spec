@@ -11,8 +11,8 @@ command-line tool (magnum).
 %global common_desc_tests Python-magnumclient test subpackage
 
 Name:           python-%{pname}
-Version:        XXX
-Release:        XXX
+Version:        3.0.0
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -142,3 +142,6 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %{python3_sitelib}/%{pname}/tests
 
 %changelog
+* Mon Apr 27 2020 RDO <dev@lists.rdoproject.org> 3.0.0-1
+- Update to 3.0.0
+
