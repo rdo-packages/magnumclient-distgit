@@ -39,7 +39,9 @@ BuildRequires:  python3-oslo-utils
 BuildRequires:  python3-openstackclient
 BuildRequires:  python3-oslo-serialization
 BuildRequires:  python3-oslo-log
+%if 0%{?rhel}
 BuildRequires:  python3-osprofiler
+%endif
 BuildRequires:  python3-stevedore
 BuildRequires:  python3-requests
 BuildRequires:  python3-oslo-i18n
@@ -48,6 +50,7 @@ BuildRequires:  python3-mock
 BuildRequires:  python3-testtools
 BuildRequires:  python3-keystoneauth1
 BuildRequires:  python3-prettytable
+BuildRequires:  python3-stestr
 
 Requires:    python3-babel
 Requires:    python3-cryptography
@@ -94,6 +97,7 @@ Requires:  python3-mock
 Requires:  python3-testtools
 Requires:  python3-keystoneauth1
 Requires:  python3-prettytable
+Requires:  python3-stestr
 
 %description -n python3-%{pname}-tests
 %{common_desc_tests}
@@ -120,9 +124,11 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %{py3_install}
 
 %check
-# tests are failing due to unicode not defined
-# we are skipping the test
-%{__python3} setup.py test ||
+%if 0%{?rhel}
+PYTHON=%{__python3} stestr run --slowest
+%else
+PYTHON=%{__python3} stestr run --slowest || true
+%endif
 
 %files -n python3-%{pname}
 %doc README.rst
