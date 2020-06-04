@@ -39,7 +39,6 @@ BuildRequires:  python3-oslo-utils
 BuildRequires:  python3-openstackclient
 BuildRequires:  python3-oslo-serialization
 BuildRequires:  python3-oslo-log
-BuildRequires:  python3-osprofiler
 BuildRequires:  python3-stevedore
 BuildRequires:  python3-requests
 BuildRequires:  python3-oslo-i18n
