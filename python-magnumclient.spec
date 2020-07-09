@@ -11,8 +11,8 @@ command-line tool (magnum).
 %global common_desc_tests Python-magnumclient test subpackage
 
 Name:           python-%{pname}
-Version:        3.0.0
-Release:        2%{?dist}
+Version:        3.0.1
+Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
 License:        ASL 2.0
@@ -148,6 +148,9 @@ PYTHON=%{__python3} stestr run --slowest || true
 %{python3_sitelib}/%{pname}/tests
 
 %changelog
+* Thu Jul 09 2020 Spyros Trigazis <spyridon.trigazis@cern.ch> 3.0.1-1
+- Update to 3.0.1 https://review.opendev.org/#/c/738426/
+
 * Mon Jun 08 2020 RDO <dev@lists.rdoproject.org> 3.0.0-2
 - Make osprofiler BR conditional excluding Fedora
 
