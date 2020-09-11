@@ -63,7 +63,6 @@ Requires:    python3-osc-lib >= 1.8.0
 Requires:    python3-os-client-config >= 1.28.0
 Requires:    python3-pbr
 Requires:    python3-prettytable
-Requires:    python3-six
 
 Requires:    python3-decorator
 
