@@ -65,7 +65,6 @@ BuildRequires:  python3-keystoneauth1
 BuildRequires:  python3-prettytable
 BuildRequires:  python3-stestr
 
-Requires:    python3-babel
 Requires:    python3-cryptography
 Requires:    python3-keystoneauth1 >= 3.4.0
 Requires:    python3-oslo-i18n >= 3.15.3
