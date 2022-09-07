@@ -163,3 +163,4 @@ PYTHON=%{__python3} stestr run --slowest || true
 %{python3_sitelib}/%{pname}/tests
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/python-magnumclient/commit/52145663a161a79a50d6bdcdbafcd715b4b27794
