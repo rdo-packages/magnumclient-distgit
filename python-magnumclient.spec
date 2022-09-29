@@ -13,7 +13,7 @@ command-line tool (magnum).
 %global common_desc_tests Python-magnumclient test subpackage
 
 Name:           python-%{pname}
-Version:        3.7.0
+Version:        4.0.0
 Release:        1%{?dist}
 Summary:        Client library for Magnum API
 
@@ -163,6 +163,9 @@ PYTHON=%{__python3} stestr run --slowest || true
 %{python3_sitelib}/%{pname}/tests
 
 %changelog
+* Thu Sep 29 2022 RDO <dev@lists.rdoproject.org> 4.0.0-1
+- Update to 4.0.0
+
 * Wed Sep 14 2022 RDO <dev@lists.rdoproject.org> 3.7.0-1
 - Update to 3.7.0
 
