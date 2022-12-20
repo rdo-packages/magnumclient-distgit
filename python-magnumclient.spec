@@ -170,3 +170,4 @@ PYTHON=%{__python3} stestr run --slowest || true
 * Thu Sep 09 2021 RDO <dev@lists.rdoproject.org> 3.5.0-1
 - Update to 3.5.0
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/python-magnumclient/commit/ab601bd7ab83f91527142d1eccc9841542204c97
