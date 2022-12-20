@@ -110,6 +110,9 @@ Requires:  python3-testtools
 Requires:  python3-keystoneauth1
 Requires:  python3-prettytable
 Requires:  python3-stestr
+%if 0%{?rhel}
+Requires:  python3-osprofiler
+%endif
 
 %description -n python3-%{pname}-tests
 %{common_desc_tests}
