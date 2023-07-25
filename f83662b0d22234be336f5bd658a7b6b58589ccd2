@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25bd9da_f27b7d3d",
+        "filename": "python-magnumclient.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2023-07-25T08:04:53Z",
+      "side": 1,
+      "message": "don\u0027t we need\n%if ! 0%{?with_doc}\n%global excluded_brs %{excluded_brs} sphinx openstackdocstheme\n%endif\n?",
+      "revId": "f83662b0d22234be336f5bd658a7b6b58589ccd2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
