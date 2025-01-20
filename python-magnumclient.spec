@@ -74,7 +74,6 @@ Requires:  python3-stevedore
 Requires:  python3-requests
 Requires:  python3-oslo-i18n
 Requires:  python3-fixtures
-Requires:  python3-mock
 Requires:  python3-testtools
 Requires:  python3-keystoneauth1
 Requires:  python3-prettytable
