@@ -156,3 +156,4 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %{python3_sitelib}/%{pname}/tests
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/python-magnumclient/commit/6357cfaa79857dd338b1c42a02eb1866609a9f18
